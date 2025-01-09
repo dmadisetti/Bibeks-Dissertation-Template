@@ -4,6 +4,41 @@ This is an unofficial thesis (masters) or dissertation (PhD) template for Johns 
 
 As of March 2024, the template follows the thesis or dissertation formatting requirements provided by the [Johns Hopkins University Sheridan Library](https://www.library.jhu.edu/library-services/electronic-theses-dissertations/formatting-requirements/). Johns Hopkins Library is flexible in terms of the format except for the title page, margins, and overall double-spaced content. **However, be sure to check the requirements before you proceed any further. It is the user's responsibility to ensure all the formatting requirements are met.**
 
+```mermaid
+graph TB
+    subgraph Styles
+        C[sty/typesetting]
+        D[sty/packages]
+        E[sty/opts]
+        F[sty/title]
+        G[sty/document]
+        H[sty/macros]
+        I[sty/math]
+    end
+
+    subgraph Chapters
+        M[chapters/01-chapter.tex]
+        N[chapters/02-chapter.tex]
+        O[chapters/03-chapter/main.tex]
+        P[chapters/04-chapter.tex]
+        Q[chapters/05-chapter.tex]
+    end
+
+    subgraph Appendices
+        S[appendices/appendix-A.tex]
+        T[appendices/appendix-B.tex]
+    end
+
+    A[main] --> B[styles]
+    B --> Styles
+
+    A --> J[title]
+    A --> K[frontmatter]
+    A --> L[body]
+    L --> Chapters
+    A --> R[backmatter]
+    R --> Appendices
+```
 
 ## Table of Contents
 
