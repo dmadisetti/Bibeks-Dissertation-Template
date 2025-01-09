@@ -29,11 +29,18 @@ graph TB
         T[appendices/appendix-B.tex]
     end
 
+    subgraph Frontmatter
+        src/abstract
+        src/dedication
+        src/acknowledgement
+        src/epigraph
+    end
+
     A[main] --> B[styles]
     B --> Styles
 
     A --> J[title]
-    A --> K[frontmatter]
+    A -.-> Frontmatter
     A --> L[body]
     L --> Chapters
     A --> R[backmatter]
@@ -100,7 +107,7 @@ Since the template is based on the report class, it is subdivided into multiple 
 | `README.md` | is this file that contains the details related to the template. |
 
 > [!NOTE]
-> 
+
 > Currently, the chapters are filled with randomly generated text by the `blindtext` package. Remove them to get started with your writing.
 
 
@@ -109,7 +116,7 @@ Since the template is based on the report class, it is subdivided into multiple 
 Since Johns Hopkins provides [Overleaf premium](https://www.overleaf.com/learn/how-to/Overleaf_premium_features) to all affiliates, my recommendation is to use Overleaf for this template. Follow one of the two approaches to get started with this project on Overleaf. Then go through the `00-main.tex` file and other files to see how the template is structured.
 
 - You can download/clone this repository from GitHub, and compress it as a zip file. Go to Overleaf, Click on **New Project** -> **Upload Project**, then upload the zipped folder.
-  
+
 - If you have your Overleaf and GitHub account linked and want to have copies of the project in both places, you can **fork** this repository. Then go to Overleaf and click on **New Project** -> **Import from GitHub**, it should list the forked project. Once imported, you can start working on it.
 
 - Once you have imported the project, you need to compile the `00-main.tex` file using the `pdflatex` option (default on Overleaf) which will call all the auxiliary `.tex` files included to produce the final PDF. It should compile without any error on Overleaf. There might be warnings, but you can ignore them.
@@ -134,7 +141,7 @@ Since the default formatting of the LaTeX report class (even with different pack
 
 - All the texts in the preface chapters and the main text chapters are double-spaced.
   - You can define local environments in optional preface chapters (acknowledgement, dedication, epigraph, etc.) which have different styles and spacing.
- 
+
 - The document is formatted to have **three** levels of paragraph-style environments (section, subsection, subsubsection) for writing the thesis.
 
 - The table of contents (TOC) shows only **two** levels (section and subsection) below the chapter level by default.
@@ -162,18 +169,18 @@ Since the default formatting of the LaTeX report class (even with different pack
 
 - Equation numbers are also preceded by chapter numbers as defined by the following command:
   ``` latex
-  \numberwithin{equation}{chapter}       
+  \numberwithin{equation}{chapter}
   ```
 
 - The numbering of tables also follows the same scheme as the Figures and Equations (preceded by chapter label). The default spacing between rows inside a table environment is one-half-spaced.
-  
+
 - Captions for the table and figure environments are placed at the bottom of the environments. The caption starts with boldfaced **Figure** and **Table** labels, respectively, for Figure and Table, and uses chapter-wise numbering separated by a period between the chapter label and the number of the corresponding environment followed by a colon before the long caption.
 
-- The default bibliography style is a `Nature` style numeric bibliography. Depending on the discipline, you may have to change it; the details are given below. 
+- The default bibliography style is a `Nature` style numeric bibliography. Depending on the discipline, you may have to change it; the details are given below.
 
 
 > [!TIP]
-> 
+>
 > If you change any formatting or do further customization, one of the best possible ways to check consistency in spacing is to load the `fgruler` package as below in the preamble (you can change the options by looking into the documentation of this package).
 ``` latex
 \usepackage[unit=in,type=upperleftT,color=red,showframe]{fgruler}
@@ -193,13 +200,13 @@ Overleaf has a huge collection of tutorials and examples on different LaTeX-rela
 The preamble section of the `00-main.tex` file has been subdivided into multiple sections to make the code understandable and readable. A simple descriptions of the sections are below:
 
 - Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `00-main.tex` file in the `LIST OF VARIABLES FOR FORMATTING` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
-    
+
 - The most common and popular packages for writing a thesis or dissertation are added in the `LaTeX PACKAGES` sections. Some packages are loaded with the options specified for formatting purposes. For some other packages, options are specified in the `PACKAGE OPTIONS` section. Before you add a package, please check if it has already been added. Sometimes adding packages in the wrong order may throw a warning or error because of the dependency issue.
 
 - Based on the declared variables and loaded package options, formatting-related customized settings are available in the `DOCUMENT FORMATTING` section in the `00-main.tex` file.
 
 
-- If you do not like the default font of this template (Latin Modern Roman), you can try a different font or combination of fonts. However, you should be careful about having consistent typesetting, especially between math and text. [Follow this old discussion on StackExchange to learn more about fonts in LaTeX](https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math). But finding a different font that offers consistent text and math typography may require you to add customized commands/ macros and options. 
+- If you do not like the default font of this template (Latin Modern Roman), you can try a different font or combination of fonts. However, you should be careful about having consistent typesetting, especially between math and text. [Follow this old discussion on StackExchange to learn more about fonts in LaTeX](https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math). But finding a different font that offers consistent text and math typography may require you to add customized commands/ macros and options.
   - This TUG page lists [fonts that provide math support](https://tug.org/FontCatalogue/mathfonts.html). But Overleaf may not have all of the packages listed there, and some of the packages may raise conflict with other packages that are already loaded. You can try and figure out which works best for you.
   - The font package has been loaded using the `\usepackage{\FontPackage}` command in the `DOCUMENT FORMATTING` section of the preamble. Depending on the Font you choose, you may have to add additional options/ packages (follow the above webpage) and simply changing the `\FontPackage` variable may not work.
 
@@ -229,7 +236,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
 - `\ThesisStatement{ }{ }:` prints out the thesis or dissertation statement. Arguments to this macro are document type (thesis or dissertation) and degree name without specifying the major.
 - `\Location:` prints out the location (Baltimore, Maryland).
 - `\ThesisDate{ }{ }:` prints the thesis submission month and year; these are the two arguments to the macro.
-- `\ThesisCopyright{ }{ }:` prints the optional copyright statement 2 inches from the bottom of the page. The first and second arguments to this macro are Year and Author name. 
+- `\ThesisCopyright{ }{ }:` prints the optional copyright statement 2 inches from the bottom of the page. The first and second arguments to this macro are Year and Author name.
 
 
 
@@ -274,7 +281,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
   - You can also add quotes before the chapter labels and titles, but in that case, you have to change the `\ChapterTopMargin` variable to ensure enough spacing before the chapter label and it may complicate the overall document formatting (not recommended).
 
 
-- If any chapter is already published at a journal or conference or available in any of the archival repositories (submitted/ to be submitted to a peer-reviewed journal/conference), it is a good idea to declare it at the beginning of the chapter. Such an example has been shown in Chapter 2 of the template. To have consistent formatting, a `singlespace` environment was used, and the publication was printed with the `\fullcite{}` command. 
+- If any chapter is already published at a journal or conference or available in any of the archival repositories (submitted/ to be submitted to a peer-reviewed journal/conference), it is a good idea to declare it at the beginning of the chapter. Such an example has been shown in Chapter 2 of the template. To have consistent formatting, a `singlespace` environment was used, and the publication was printed with the `\fullcite{}` command.
   - If the chapter is adapted from multiple publications, you can use `enumerate` or `itemize` environments to list all the publications inside the spacing environment.
   - If the listed paper (published, submitted, or in preparation) is not cited anywhere else in the document and you do not want this to appear in the bibliographic references in the back matter, then use the following command. This command adds the paper to the group called `mypapers` which are not printed in the bibliography list.
     ``` latex
@@ -294,7 +301,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
   ``` latex
   \titlespacing*{<environment-name>}{<space-left>}{<space-before>}{<space-after>}
   ```
-  
+
 - Header and footer options in the document are managed using the `\fancyhdr` package. Currently, the header prints the chapter label and the chapter title on the left side. If the chapter name is too long, you may have to customize the header spacing in the geometry settings options to accommodate that. Tweak the variable `\HeaderHeight` for this. The current value is set to `30 pt` which can accommodate double-line headers.
   - If you have a longer chapter header consider changing the `\HeaderHeight` from `30 pt` (for double lines) to `42 pt` (for triple lines).
   - You can also consider making the font size smaller for the headers.
@@ -318,7 +325,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
 
 - In the first appendix chapter (see `11-appendix-A.tex` file), you will need the following preamble before you begin the chapter to properly add the appendix to the TOC.
   ``` latex
-  \appendix 
+  \appendix
   \makeatletter
   \addtocontents{toc}{\protect\renewcommand\protect\cftchappresnum{\@chapapp\ }}
   \makeatother
@@ -344,7 +351,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
 
 ### Bibliography
 
-The bibliography in this template is managed by the BibLaTeX package instead of the BibTeX or Natbib package. BibLaTeX is a more modern and flexible package compared to the `natbib` package and `BibTeX` engine and is primarily based on the `biber` backend engine.  
+The bibliography in this template is managed by the BibLaTeX package instead of the BibTeX or Natbib package. BibLaTeX is a more modern and flexible package compared to the `natbib` package and `BibTeX` engine and is primarily based on the `biber` backend engine.
 
 
 > [!TIP]
@@ -363,17 +370,17 @@ The bibliography in this template is managed by the BibLaTeX package instead of 
 
 - Bibliographic references are printed using the following command which will ensure the citations included in the `\mybibexclude{}` command are not printed and the bibliography appears as a chapter in the TOC with the specified title.
   ``` latex
-  \BibTextSpacing                         
+  \BibTextSpacing
   \fancyhead[L]{\nouppercase \leftmark}
   \printbibliography[title={Bibliographic references},
       heading=bibintoc,notcategory=mypapers]
-  \clearpage                              
+  \clearpage
   ```
 
 > [!WARNING]
 >
 > If you have a `bibtex` compatible file, then change the option from `backend=biber` to `backend=bibtex` for the `biblatex` package. But you may get warnings and errors thrown by the LaTeX compiler in this case.
-> 
+>
 
 
 ### Generating PDF/A compliant output file for the JH Library on Overleaf
@@ -387,7 +394,7 @@ Johns Hopkins Library requires the electronic copy of the thesis must be [genera
 
 
 > [!IMPORTANT]
-> 
+>
 > To include the meta-data in the generated PDF/A file, you will need to edit the `output.xmpdata`. The given fields are very simple and self-explanatory. Make sure the `\Title` and `\Author` fields are there.
 
 

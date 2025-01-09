@@ -36,7 +36,7 @@
 \usepackage{sty/typesetting}
 %%% You are encouraged to go through the packages manually to enable
 % and disable what you need. What is provided are common packages,
-% but sit is not exhaustive nor minial list.
+% but it is not an exhaustive nor minimal list.
 \usepackage{sty/packages}
 %%% Accordingly tweak package settings. If you disabled any packages,
 % be sure to cross reference with this import.
@@ -60,20 +60,31 @@
 % includes abstract, dedication, acknowledgement,epigraph
 \input{src/frontmatter}
 
-%%%% MAIN MATTER
-\input{src/body}
-% includes various chapters. Within this template:
-%    - chapters/01-chapter.tex
-%    - chapters/02-chapter.tex
-%    - chapters/03-chapter.tex
-%    - chapters/04-chapter.tex
-%    - chapters/05-chapter.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% PAGE and TEXT settings
+\MainTextSpacing                        % restores double spacing
+\pagenumbering{arabic}                  % Arabic page numbering
+\fancyhead[L]{\chaptername\ \thechapter. \nouppercase \leftmark}
+
+%%%% include all the main text chapters
+% Note! You can include a directory (like chapter 3) or a file directly.
+\Chapter{chapters/01-chapter}
+\Chapter{chapters/02-chapter}
+\Chapter{chapters/03-chapter}
+\Chapter{chapters/04-chapter}
+\Chapter{chapters/05-chapter}
+
+%% add more main text technical chapters if you have
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%% BACK MATTER
 \input{src/backmatter}
 % Includes bib and appendices. Within this template:
-$    - appendix-A.tex
-$    - appendix-B.tex
+%    - appendix-A.tex
+%    - appendix-B.tex
 
 
 \end{document}
