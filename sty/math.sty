@@ -1,0 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% these are just some examples; add more settings, macros, environments, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATH MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% basic settings for math environment
+\allowdisplaybreaks[1]                  % page break for long equations
+\numberwithin{equation}{chapter}        % eqn no with chapter label
+\setcounter{MaxMatrixCols}{20}          % no of maximum columns in matrix
+
+%% custom math macros
+\newcommand{\dC}{$^{\circ}$C}           % degree celsius symbol
+\newcommand{\vect}[1]{\mathbf{#1}}      % boldface for vectors and tensors
+\DeclareMathOperator{\T}{{\top}}        % transpose of a matrix/ tensor
+\DeclareMathOperator{\tr}{tr}           % trace of a matrix
+\DeclareMathOperator{\divg}{div}        % divergence of vector and tensor
+\DeclareMathOperator{\grad}{grad}       % gradient of vector and tensor
+\DeclareMathOperator{\curl}{curl}       % curl of vector and tensor
+
+%% theorem-style remark environment (custom)
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+\counterwithin{remark}{chapter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END MATH MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

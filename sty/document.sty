@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% further tweaking variables for the current consistent document formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT FORMATTING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{tocdepth}{\NoTOCLevel}                  % list depth in ToC
+\setcounter{secnumdepth}{\NoSectionLevel}           % section to ...
+% subsubsection
+
+%%%% font size and spacing around the titles of ToC/ LoT/ LoF
+\renewcommand{\cfttoctitlefont}{\ChapterFont}
+\renewcommand{\cftlottitlefont}{\ChapterFont}
+\renewcommand{\cftloftitlefont}{\ChapterFont}
+
+\setlength{\cftbeforetoctitleskip}{\BeforeTOCTitleSpacing}
+\setlength{\cftbeforelottitleskip}{\BeforeTOCTitleSpacing}
+\setlength{\cftbeforeloftitleskip}{\BeforeTOCTitleSpacing}
+\setlength{\cftaftertoctitleskip}{\AfterTOCTitleSpacing}
+\setlength{\cftafterlottitleskip}{\AfterLOTTitleSpacing}
+\setlength{\cftafterloftitleskip}{\AfterLOTTitleSpacing}
+
+%% tweak to TOC to add 'chapter' to the chapter name instead of a number only
+%% set the width of the box based on the longest label name
+\renewcommand{\cftchappresnum}{\chaptername\space}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}  % dots for chapters too
+\setlength{\cftchapnumwidth}{\widthof{\textbf{Appendix~XXX~}}}
+
+\setlength{\cftbeforechapskip}{\ChapTOCSpacing}
+\setlength{\cftbeforesecskip}{\SecTOCSpacing}
+\setlength{\cftbeforesubsecskip}{\SubsecTOCSpacing}
+\setlength{\cftbeforesubsubsecskip}{\SubsubsecTOCSpacing}
+
+%% tweak to LOT and LOF to add 'Table'/ 'Figure' to the table/ figure
+% caption listing
+%% to change the distance to the start of the table/ figure title
+\newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
+
+\setlength{\cfttabindent}{\TOCIndent}               % indentation
+% from tables in LoT
+\renewcommand{\cfttabpresnum}{\bfseries Table }
+\setlength{\cfttabnumwidth}{\widthof{\textbf{Table~999.999~}}}
+\setlength{\cftbeforetabskip}{\LOTItemSpacing}      % spacing between each item
+\addtocontents{lot}{\protect\noaddvspace}
+
+\setlength{\cftfigindent}{\TOCIndent}               % indentation
+% from figures in LoF
+\renewcommand{\cftfigpresnum}{\bfseries Figure }
+\setlength{\cftfignumwidth}{\widthof{\textbf{Figure~999.999~}}}
+\setlength{\cftbeforefigskip}{\LOTItemSpacing}      % spacing between each item
+\addtocontents{lof}{\protect\noaddvspace}
+
+%%%% TITLESEC: settings for chapter label and title
+\titleformat{\chapter}[display]{\ChapterFont}
+{\chaptertitlename\ \thechapter}{\ChapLabelToTitle}{\ChapterFont}
+
+\titlespacing*{\chapter}{0pt}{\NumChapterTopMargin}{\ChapTitleToText}
+
+\titlespacing*{name=\chapter,numberless}{0pt}{\UnNumChapterTopMargin}
+{\ChapTitleToText}
+
+%%%% TITLESEC: settings for sections, subsection, ... heading format
+\titleformat*{\section}{\SectionFont}
+\titleformat*{\subsection}{\SubsectionFont}
+\titleformat*{\subsubsection}{\SubsubsectionFont}
+%% if you had more levels then add settings for paragraph and subparagraph
+
+%% to customize space around section headings, use the following command:
+% \titlespacing*{environment-name}{space-left}{space-before}{space-after}
+
+%%%% PARSKIP: for paragraph (and not title) spacing, roughly speaking
+\renewcommand{\arraystretch}{\GlobalTableSpacing}   % spacing inside table
+\setlength{\parskip}{\ParagraphSpacing}             % paragraph skip
+\setlength{\parindent}{\ParagraphIndent}            % paragraph indentation
+\setlength{\bibitemsep}{\BibItemSpacing}            % bib item separation
+\setlength{\footnotesep}{\FootnoteSpacing}          % separation
+% between footnote
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END DOCUMENT FORMATTING %%%%%%%%%%%%%%%%%%%%%%%%%%%

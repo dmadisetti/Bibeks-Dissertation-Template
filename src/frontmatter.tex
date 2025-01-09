@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% text spacing, page numbering, and header settings
+\MainTextSpacing                            % double spacing for the contents
+\pagenumbering{roman}                       % pagination style: Roman numeral
+\setcounter{page}{2}                        % page counter starts at roman ii
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\fancyhead[R]{}
+\fancyhead[L]{\nouppercase \leftmark}       % prints header for unnumbered chap
+
+%%%% MUST ADD ABSTRACT (includes committee as well)
+\include{src/abstract}
+
+%%%% OPTIONAL but COMMON: preface chapters
+\include{src/dedication}
+\include{src/acknowledgement}
+\include{src/epigraph}
+%% you can have other chapters and the order does not matter
+
+%%%% LISTINGS
+\TOCTextSpacing                             % single spacing for the
+% table of contents
+\microtypesetup{protrusion=false}           % turn off protrusion from microtype
+\hypersetup{linkcolor=black}                % local black hyperlink for TOC
+%
+\mytableofcontents                          % MUST
+%
+\mylistoftables                             % MUST: if you have tables
+%
+\mylistoffigures                            % MUST: if you have figures
+%
+%% OPTIONAL: you can add more lists here (but you will have to define those)
+%
+\hypersetup{linkcolor=blue}                 % revert it back to blue
+\microtypesetup{protrusion=true}            % turn on protrusion from microtype
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

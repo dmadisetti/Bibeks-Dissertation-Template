@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% if possible, make your formatting changes here through the variables
+%%%%%%%%%%%%%%%%%%%%%% LIST OF VARIABLES FOR FORMATTING %%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% JH Library requirement (DO NOT CHANGE)
+\def\GlobalMargin{1.0in}                    % margin on all sides
+\def\PrintingOffset{0.5in}                  % additional left margin
+% for the printed copy
+\def\MainTextSpacing{\doublespacing}        % double-spaced main text
+
+%%%% ADDITIONAL PATHS and FILES
+\def\FigurePath{figures}                    % subdirectory for the figure files
+\def\BibFileName{thesis.bib}                % name of
+% BibLaTeX-compatible bib file
+
+\def\FontPackage{lmodern}                   % default font package
+
+\def\HyperlinkColor{blue}                   % color for hyperlinks
+
+%%%% FONT SIZE and TYPESET for DIFFERENT HEADINGS
+%% check here for details: https://en.wikibooks.org/wiki/LaTeX/Fonts
+%% font format for thesis title
+\def\TitleFont{\Large\bfseries\singlespacing\MakeUppercase}
+
+%% font for chapter, section, subsection, and subsubsection heading
+\def\NoSectionLevel{3}                      % 3 levels => section to
+% subsubsection
+\def\ChapterFont{\Large\bfseries\singlespacing}
+\def\SectionFont{\large\bfseries\singlespacing}
+\def\SubsectionFont{\normalsize\bfseries\singlespacing}
+\def\SubsubsectionFont{\normalsize\itshape\singlespacing}
+
+%%%% PARAGRAPH
+\def\ParagraphSpacing{\baselineskip}        % spacing between paragraph
+\def\ParagraphIndent{0 pt}                  % indentation at the
+% beginning of the paragraph
+
+%% CAPTION
+\def\CaptionFontSize{small}                 % caption font size
+\def\CaptionLabelFontType{bf}               % boldface label for captions
+\def\CaptionSeparator{colon}                % separates caption label
+% from caption text
+\def\CaptionSpacing{1.0}                    % single-spaced captions
+\def\FigureToCaption{0 pt}                  % spacing between the
+% figure and the caption
+
+%%%% GLOBAL SPACING for TABLES
+\def\GlobalTableSpacing{1.5}                % global spacing parameter for table
+
+%%%% HEADER AND FOOTER SETTING
+\def\HeaderHeight{30 pt}                    % height of the chapter header
+\def\HeaderSpace{12 pt}                     % space between header
+% and the following text
+
+\def\FootnoteSpacing{\baselineskip}         % spacing between footnotes
+
+%%%% BIBLIOGRAPHY ITEMS
+\def\BibTextSpacing{\singlespacing}         % single-spaced bibliography
+\def\BibItemSpacing{\baselineskip}          % spacing between
+% bibliographic items in reference
+
+%%%% CHAPTER QUOTE (EPIGRAPH PACKAGE)
+\def\ChapQuoteFontSize{\small}              % font size of chapter quotes
+\def\ChapQuoteLocation{flushright}          % location of chapter quote
+\def\ChapQuoteTextShape{\itshape}           % font shape for quotes
+\def\ChapQuoteAuthorTextShape{\scshape}     % font shape for quote author
+\def\MaxQuoteWidth{0.65\textwidth}          % width epigraph-based
+% quotes in chapter
+
+%%%% SECTION LEVELS and TOC APPEARANCE
+\def\NoTOCLevel{2}                          % no of levels showed in
+% the table of contents
+\def\TOCIndent{0 pt}                        % indentation in the list
+% of figs and tables
+%% 3 levels mean: section to subsubsection.. decrease if you want to
+% show less in TOC
+
+%%%% TOC SPACING of different section levels (chapter to subsubsection)
+\def\TOCTextSpacing{\singlespacing}         % single spacing for TOC texts
+\def\ChapTOCSpacing{\baselineskip}          % spacing between chapters
+\def\SecTOCSpacing{0.5\baselineskip}        % spacing between sections
+\def\SubsecTOCSpacing{0.3\baselineskip}     % ... between subsections
+\def\SubsubsecTOCSpacing{0.3\baselineskip}  % ... between subsubsections
+\def\LOTItemSpacing{\baselineskip}          % spacing between LOT/LOF items
+
+%%%% ADHOC HEIGHT ADJUSTMENT VARIABLES for consistent typesettings
+%% following numbers are found by trial and error to compensate
+%% for the default spacing around different LaTeX environments.
+%% unless you find inconsistent formatting, you may not need to change these
+\def\TitleTopSpacing{-\HeaderHeight-\HeaderSpace}   % top height
+% adjustment for thesis title
+\def\BeforeTOCTitleSpacing{-42 pt}          % space before TOC title
+\def\AfterTOCTitleSpacing{34 pt}            % space after TOC title
+\def\AfterLOTTitleSpacing{34 pt}            % space after LOT/ LOF title
+
+\def\NumChapterTopMargin{-64 pt}            % space before numbered
+% chapter label
+\def\UnNumChapterTopMargin{-85 pt}          % space before unnumbered
+% chapter label
+\def\ChapLabelToTitle{-27 pt}               % space between chapter
+% label to title
+\def\ChapTitleToText{24 pt}                 % space between the
+% chapter title and the following text
+\def\SpaceBeforeQuote{-20 pt}               % white space before quote
+
+%%%% if you want to change any of the heights, adjust using a ruler:
+% \usepackage[unit=in,type=upperleftT,color=red,showframe]{fgruler}
+
+%%%%%%%%%%%%%%%%%%%% END LIST OF VARIABLES FOR FORMATTING %%%%%%%%%%%%%%%%%%%%%%

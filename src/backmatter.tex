@@ -1,0 +1,20 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BACK MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% BIBLIOGRAPHIC REFERENCES
+\BibTextSpacing                         % text spacing for each bib item
+\fancyhead[L]{\nouppercase \leftmark}
+\printbibliography[title={Bibliographic references},
+heading=bibintoc, notcategory=mypapers]
+\clearpage                              % flushes out floating header
+
+%%%% Appendix chapter (same header format as the main chapters)
+%% if you do not have appendix chapters, then comment them out
+\MainTextSpacing
+\fancyhead[L]{\appendixname\ \thechapter. \nouppercase \leftmark}
+
+\include{appendices/appendix-A}
+\include{appendices/appendix-B}
+
+%% add more appendix chapters if you have
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END BACK MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%

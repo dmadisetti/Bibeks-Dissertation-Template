@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% add packages as needed but sometimes the order of the packages matters.
+%% you may have to change the options of the biblatex package for the
+% bibliography.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LaTeX PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% SOME PRE-REQUISITE PACKAGES
+\usepackage[utf8]{inputenc}                 % for encoding input
+% character (required)
+\usepackage[american]{babel}                % for different language typography
+\usepackage[T1]{fontenc}                    % for font encoding
+
+%%%% DEFAULT FONT (you can specify other fonts - compatibility could
+% be an issue)
+\usepackage{\FontPackage}
+
+%%%% COMMON MATH PACKAGES
+\usepackage{amsfonts,amssymb,amsmath,amsthm,autobreak,
+cancel,dsfont,mathtools,mathbbol,mathrsfs,siunitx,upgreek}
+
+%%%% TABLE-RELATED PACKAGES
+\usepackage{booktabs,longtable,dcolumn,makecell,
+multicol,multirow,tabularx,xltabular,rotating}
+
+%%%% package for micro-typography (you can define more settings)
+%% see details here: https://www.khirevich.com/latex/microtype/
+\usepackage[activate={true,nocompatibility}]{microtype}
+
+%%%% BIBLIOGRAPHIC PACKAGE (change the style or other options if you need to)
+%% Nature style bibliography
+\usepackage[backend=biber, defernumbers=true, style=nature, maxnames=99,
+date=year, isbn=false, url=false, doi=true]{biblatex}
+
+%% APA style
+% \usepackage[backend=biber, defernumbers=true, style=apa, maxnames=99,
+%     isbn=false, url=false, doi=true]{biblatex}
+
+%% IEEE style
+% \usepackage[backend=biber,style=ieee,defernumbers=true,maxnames=99,
+%     date=year, isbn=false, url=false, doi=true]{biblatex}
+
+%%%% OTHER PACKAGES AND OPTIONS
+\usepackage[pagewise,mathlines]{lineno}     % line numbers for drafting
+\usepackage[ruled]{algorithm2e}             % to manage algorithm environment
+\usepackage[titletoc]{appendix}             % to manage appendix chapters
+\usepackage{blindtext}                      % to generate random filler texts
+\usepackage{calc}                           % to set arithmetic
+% arguments for spacing
+\usepackage{caption}                        % to manage captions
+\usepackage{comment}                        % to comment a large
+% amount of text as env
+\usepackage{epigraph,varwidth}              % for managing quotes
+\usepackage{enumitem}                       % to manage list environment
+\usepackage{float}                          % to manage floating environment
+% footnote environment management
+\usepackage[bottom,multiple,hang,flushmargin]{footmisc}
+\usepackage{graphicx,wrapfig}               % to manage images
+\usepackage{geometry}                       % to manage margins and page format
+\usepackage{glossaries}                     % to add glossaries
+\usepackage{fancyhdr}                       % for header/ footer settings
+\usepackage[dvipsnames]{xcolor}             % color-related package
+\usepackage[a-1b]{pdfx}                     % to generate PDF/A file
+% (add before hyperref)
+\usepackage[pdfa]{hyperref}                 % for hyperlink management
+\usepackage[all]{hypcap}                    % for captions on the
+% side of figures
+\usepackage{ifthen}                         % if-then statement in LaTeX code
+\usepackage{lscape}                         % landscape mode
+\usepackage{listings,minted}                % to include codes
+\usepackage{csquotes}                       % yet another package to
+% manage quote
+\usepackage{setspace}                       % sets space between lines
+\usepackage{seqsplit}                       % splits long character sequence
+\usepackage[rightcaption]{sidecap}          % for sideway captions
+\usepackage{tocloft}                        % to manage table of contents, etc.
+\usepackage{textcomp}                       % text companion fonts in TS1
+\usepackage[absolute]{textpos}              % position text at certain location
+\usepackage{titlesec}                       % managing different
+% title environments
+\usepackage[final]{pdfpages}                % to insert pdf pages
+\usepackage{parskip}                        % default spacing around
+% environments
+\usepackage{tikz}                           % drawing related package
+\usepackage{subcaption}                     % individual panel and caption
+% required for \Chapter macro
+\usepackage{filecontents}
+
+%% add more packages and/or change options of the packages as needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END LaTeX PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% only if you plan on using chapter quotes, you may need epigraph settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EPIGRAPH SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\epigraphwidth}{\MaxQuoteWidth}              % max width
+% of chapter epigraph
+\renewcommand{\epigraphflush}{\ChapQuoteLocation}       % chapter
+% epigraph on right
+\renewcommand{\epigraphsize}{\ChapQuoteFontSize}        % font size
+% for chapter epigraph
+\renewcommand{\textflush}{\ChapQuoteLocation}
+\renewcommand{\sourceflush}{\ChapQuoteLocation}
+\newcommand{\epitextfont}{\ChapQuoteTextShape}          % quote font shape
+\newcommand{\episourcefont}{\ChapQuoteAuthorTextShape}  % quote
+% author name shape
+
+%% following settings put variable width underline between quote and author
+\makeatletter
+\setlength{\beforeepigraphskip}{\SpaceBeforeQuote}
+\newsavebox{\epi@textbox}
+\newsavebox{\epi@sourcebox}
+\newlength\epi@finalwidth
+\renewcommand{\epigraph}[2]{%
+  \vspace{\beforeepigraphskip}
+  {\epigraphsize
+    \begin{\epigraphflush}
+      \epi@finalwidth=\z@
+      \sbox\epi@textbox{%
+        \varwidth{\epigraphwidth}
+        \begin{\textflush}\epitextfont#1
+        \end{\textflush}
+        \endvarwidth
+      }%
+      \epi@finalwidth=\wd\epi@textbox
+      \sbox\epi@sourcebox{%
+        \varwidth{\epigraphwidth}
+        \begin{\sourceflush}\episourcefont#2
+        \end{\sourceflush}%
+        \endvarwidth
+      }%
+      \ifdim\wd\epi@sourcebox>\epi@finalwidth
+      \epi@finalwidth=\wd\epi@sourcebox
+      \fi
+      \leavevmode\vbox{
+        \hb@xt@\epi@finalwidth{\hfil\box\epi@textbox}
+        \vskip 1ex         % gap between quote and rule
+        \hrule height \epigraphrule
+        \vskip 1ex         % gap between rule and author
+        \hb@xt@\epi@finalwidth{\hfil\box\epi@sourcebox}
+      }%
+    \end{\epigraphflush}
+\vspace{\afterepigraphskip}}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END EPIGRAPH SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

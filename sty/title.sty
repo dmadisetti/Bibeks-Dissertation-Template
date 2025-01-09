@@ -1,0 +1,32 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITLE PAGE MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ThesisTitle}[1]{           % prints thesis title
+  \vspace*{\TitleTopSpacing}
+  {\TitleFont {#1} \par}
+}
+
+\newcommand{\ThesisAuthor}[1]{          % prints by ... thesis author
+  % in two lines
+  by \\ #1 \\
+}
+
+\newcommand{\ThesisStatement}[2]{       % prints thesis or
+  % dissertation statement
+  A {#1} submitted to The Johns Hopkins University in conformity \\
+  with the requirements for the degree of {#2}
+}
+
+\newcommand{\Location}{Baltimore, Maryland}     % prints location
+
+\newcommand{\ThesisDate}[2]{#1 #2}              % prints thesis submission date
+
+\newcommand{\ThesisCopyright}[2]{               % prints the optional
+  % copyright statement
+  \begin{textblock*}{\textwidth}(\GlobalMargin +\PrintingOffset,9in)
+    \copyright\ {#1} {#2} \\ All rights reserved
+  \end{textblock*}
+  \null
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END TITLE PAGE MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

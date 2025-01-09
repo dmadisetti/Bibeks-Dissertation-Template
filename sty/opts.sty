@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% specifying direct package options related to document formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGE OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% GRAPHICX package
+\graphicspath{{\FigurePath/}}
+
+%%%% GEOMETRY PACKAGE: margin settings required by JH library
+\geometry{letterpaper, margin=\GlobalMargin, bindingoffset=\PrintingOffset,
+  nomarginpar, includehead, headheight=\HeaderHeight,
+headsep=\HeaderSpace, includefoot, heightrounded}
+%% you can add showframe option to see how the layout looks like
+
+%%%% HYPERREF PACKAGE
+\hypersetup{linktocpage, unicode, linktoc=all, colorlinks=true,
+  citecolor=\HyperlinkColor, filecolor=\HyperlinkColor,
+linkcolor=\HyperlinkColor, urlcolor=\HyperlinkColor}
+\urlstyle{rm}           % removes default \texttt style for hyperlinks
+
+%%%% CAPTION PACKAGE
+\captionsetup{belowskip=\FigureToCaption, font=\CaptionFontSize,
+  labelfont=\CaptionLabelFontType, labelsep=\CaptionSeparator,
+font={stretch=\CaptionSpacing}, hypcap=true}
+
+%%%% BIBLATEX: bibliography package settings
+\addbibresource{\BibFileName}           % name of the bib file
+% \DeclareFieldFormat{titlecase}{\MakeSentenceCase*{#1}}
+\AtBeginBibliography{\urlstyle{rm}}     % roman font family for URL (DOI)
+\AtBeginBibliography{\vspace*{8pt}}     % add space for single-spaced bib text
+
+%% the following block ensures articles are sentence case
+%% but the journal names are title case
+\DeclareFieldFormat{sentencecase}{\MakeSentenceCase{#1}}
+\renewbibmacro*{title}{%
+  \ifthenelse{\iffieldundef{title}\AND\iffieldundef{subtitle}}
+  {}
+  {\ifthenelse{\ifentrytype{article}\OR\ifentrytype{inbook}%
+      \OR\ifentrytype{incollection}\OR\ifentrytype{inproceedings}%
+    \OR\ifentrytype{inreference}}
+    {\printtext[title]{%
+        \printfield[sentencecase]{title}%
+        \setunit{\subtitlepunct}%
+    \printfield[sentencecase]{subtitle}}}%
+    {\printtext[title]{%
+        \printfield[titlecase]{title}%
+        \setunit{\subtitlepunct}%
+    \printfield[titlecase]{subtitle}}}%
+  \newunit}%
+\printfield{titleaddon}}
+
+%%%% separate category for papers to be not cited in the bibliography
+\DeclareBibliographyCategory{mypapers}
+\newcommand{\mybibexclude}[1]{\addtocategory{mypapers}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% END PACKAGE OPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

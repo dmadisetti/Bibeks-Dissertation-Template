@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OTHER MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% UNNUMBERED CHAPTERS, SECTION, and SUBSECTION COMMAND for ADDING to TOC
+%% removes the 'Chapter #' title while keeping it listed in the TOC
+\newcommand\chap[1]{%
+  \chapter*{#1}%
+  \markboth{#1}{}
+\addcontentsline{toc}{chapter}{#1}}
+
+%% removes the 'Section #' title while keeping it listed in the TOC
+\newcommand\sect[1]{%
+  \phantomsection
+  \section*{#1}%
+\addcontentsline{toc}{section}{#1}}
+
+%% removes the 'Subsection #' title while keeping it listed in the TOC
+\newcommand\subsect[1]{%
+  \phantomsection
+  \subsection*{#1}%
+\addcontentsline{toc}{subsection}{#1}}
+
+%% removes the 'Subsubsection #' title while keeping it listed in the TOC
+\newcommand\subsubsect[1]{%
+  \phantomsection
+  \subsubsection*{#1}%
+\addcontentsline{toc}{subsubsection}{#1}}
+
+%%%% KEYWORDS for abstract
+\newcommand{\keywords}[1]{
+  \textbf{Keywords:} {#1}
+}
+
+%%%% TOCLOFT: modified macros/ commands for printing ToC, LoF, LoT
+\newcommand{\mytableofcontents}{
+  \clearpage
+  \renewcommand{\contentsname}{Table of Contents}
+  \tableofcontents
+  \clearpage
+}
+%
+\newcommand{\mylistoffigures}{
+  \clearpage \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+  \clearpage
+}
+%
+\newcommand{\mylistoftables}{
+  \clearpage \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+  \clearpage
+}
+
+%%%% IN-TEXT MACROS for own notes (you can define more)
+\newcommand{\COMMENT}{\textcolor{red}}
+\newcommand{\ADDCITATION}{\COMMENT{(ADD CITATION)}}
+
+%%%% CHAPTER COMMAND allow for various chapter locations
+\newcommand{\Chapter}[1]{%
+  \IfFileExists{#1.tex}{%
+    \IfFileExists{#1/bibtex.bib}{%
+      \begin{refsection}%
+      \include{#1}%
+      \end{refsection}%
+    }{%
+      \include{#1}%
+    }%
+  }{%
+    \IfFileExists{#1/main.tex}{%
+      \IfFileExists{#1/bibtex.bib}{%
+        \begin{refsection}%
+        \include{#1/main}%
+        \end{refsection}%
+      }{%
+        \def\FigurePath{#1/figures}%
+        \include{#1/main}%
+        \def\FigurePath{figures}%
+      }%
+    }{%
+      % Handle the case where neither file exists
+      \typeout{Error: Neither #1.tex nor #1/main.tex exists.}%
+    }%
+  }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% END OTHER MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
