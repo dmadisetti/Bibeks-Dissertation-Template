@@ -6,17 +6,17 @@ As of March 2024, the template follows the thesis or dissertation formatting req
 
 ```mermaid
 graph TB
-    subgraph Styles
-        C[sty/typesetting]
-        D[sty/packages]
-        E[sty/opts]
-        F[sty/title]
-        G[sty/document]
-        H[sty/macros]
-        I[sty/math]
+    subgraph B[Includes]
+        a[sty/typesetting]
+        b[sty/packages]
+        c[sty/opts]
+        d[sty/title]
+        e[sty/document]
+        f[sty/macros]
+        g[sty/math]
     end
 
-    subgraph Chapters
+    subgraph E[Chapters]
         M[chapters/01-chapter.tex]
         N[chapters/02-chapter.tex]
         O[chapters/03-chapter/main.tex]
@@ -24,27 +24,34 @@ graph TB
         Q[chapters/05-chapter.tex]
     end
 
-    subgraph Appendices
-        S[appendices/appendix-A.tex]
-        T[appendices/appendix-B.tex]
+    subgraph F[src/backmatter.tex]
+        direction TB
+        Bibtex
+        subgraph Appendices
+            S[appendices/appendix-A.tex]
+            T[appendices/appendix-B.tex]
+        end
+        Bibtex ~~~ Appendices
     end
 
-    subgraph Frontmatter
+    subgraph D[src/frontmatter.tex]
         src/abstract
         src/dedication
         src/acknowledgement
         src/epigraph
     end
 
-    A[main] --> B[styles]
-    B --> Styles
+    subgraph C[Title]
+        x(( )):::invis
+    end
 
-    A --> J[title]
-    A -.-> Frontmatter
-    A --> L[body]
-    L --> Chapters
-    A --> R[backmatter]
-    R --> Appendices
+    A[main.tex] -.-> B
+    A --> C
+    A --> D
+    A --> E
+    A --> F
+    style x fill:none,stroke:none,color:transparent,stroke-width:0px 
+    style C fill:none,stroke:none,stroke-width:0px 
 ```
 
 ## Table of Contents
