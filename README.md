@@ -58,6 +58,8 @@ Since the template is based on the report class, it is subdivided into multiple 
 | `preface/<filename>.tex` | are the `.tex` files dedicated to individual pages (e.g., title, dedication) or environments (such as abstract, bibliography, etc.) or technical chapters. These files are called from the `main.tex` file using an `\include{}` command which flushes all the floating objects and starts a new page. |
 | `figures` | is the subdirectory containing all the figures for the thesis. You can add the figures as chapter-wise PDF files or as just individual images with allowable extensions. Images are called using the `\includegraphics{}` command in a figure environment. |
 | `thesis.bib` | is a biblatex-compatible file that contains all the bibliographic items. Use Zotero, Mendeley, EndNote, or some other citation manager to generate this file. |
+| `lib/` | contains predefined sections such as the frontmatter and backmatter of the thesis. |
+| `sty/` | contains definitions and macros used in formatting the thesis. |
 | `latexmkrc` | contains additional settings for the make file to generate PDF/A output. This is required to be in the main directory of the Overleaf project. Do not change the file name. |
 | `output.xmpdata` | contains simple meta-data to be tagged in the final PDF/A file. Usage of this file is optional and the content inside is self-explanatory. Do not change the file name if you are compiling on Overleaf. |
 | `template.pdf` | is the sample output PDF that you will obtain when you start working on this project. Check this file to ensure you are content with the formatting. |
@@ -72,11 +74,17 @@ Since the template is based on the report class, it is subdivided into multiple 
 
 Since Johns Hopkins provides [Overleaf premium](https://www.overleaf.com/learn/how-to/Overleaf_premium_features) to all affiliates, my recommendation is to use Overleaf for this template. Follow one of the two approaches to get started with this project on Overleaf. Then go through the `main.tex` file and other files to see how the template is structured.
 
-- You can download/clone this repository from GitHub, and compress it as a zip file. Go to Overleaf, Click on **New Project** -> **Upload Project**, then upload the zipped folder.
+<details>
+<summary>
+Get started in 3 steps:
+</summary>
 
-- If you have your Overleaf and GitHub account linked and want to have copies of the project in both places, you can **fork** this repository. Then go to Overleaf and click on **New Project** -> **Import from GitHub**, it should list the forked project. Once imported, you can start working on it.
+1. You can download/clone this repository from GitHub, and compress it as a zip file. Go to Overleaf, Click on **New Project** -> **Upload Project**, then upload the zipped folder.
 
-- Once you have imported the project, you need to compile the `main.tex` file using the `pdflatex` option (default on Overleaf) which will call all the auxiliary `.tex` files included to produce the final PDF. It should compile without any error on Overleaf. There might be warnings, but you can ignore them.
+2. If you have your Overleaf and GitHub account linked and want to have copies of the project in both places, you can **fork** this repository. Then go to Overleaf and click on **New Project** -> **Import from GitHub**, it should list the forked project. Once imported, you can start working on it.
+
+3. Once you have imported the project, you need to compile the `main.tex` file using the `pdflatex` option (default on Overleaf) which will call all the auxiliary `.tex` files included to produce the final PDF. It should compile without any error on Overleaf. There might be warnings, but you can ignore them.
+</details>
 
 
 > [!TIP]
@@ -102,6 +110,11 @@ You may delete any of the optional preface files if you do not need them (the te
 ## Document formatting (customization beyond the requirements)
 
 Since the default formatting of the LaTeX report class (even with different packages loaded) has disproportionate font sizes and spacing for different environments, I customized the formatting while maintaining the library requirements. Look into this first to understand [how space is managed in LaTeX](https://www.overleaf.com/learn/latex/Articles/How_to_change_paragraph_spacing_in_LaTeX).
+
+<details>
+<summary>
+Document formatting defintiions are found in the [`sty/typesetting.sty`](sty/typesetting.sty) file, with some of the design descisions listed here.
+</summary>
 
 - The document was typeset using Latin Modern Roman font (loaded using the `lmodern` package) for document typeset as it offers consistent typesetting between the text and math environments.
 
@@ -147,6 +160,7 @@ Since the default formatting of the LaTeX report class (even with different pack
 - Captions for the table and figure environments are placed at the bottom of the environments. The caption starts with boldfaced **Figure** and **Table** labels, respectively, for Figure and Table, and uses chapter-wise numbering separated by a period between the chapter label and the number of the corresponding environment followed by a colon before the long caption.
 
 - The default bibliography style is a `Nature` style numeric bibliography. Depending on the discipline, you may have to change it; the details are given below.
+</details>
 
 
 > [!TIP]
@@ -165,9 +179,21 @@ Overleaf has a huge collection of tutorials and examples on different LaTeX-rela
 
 ### The main file
 
-The preamble section of the `main.tex` file has been subdivided into multiple sections to make the code understandable and readable. A simple descriptions of the sections are below:
+Important, in the `USER-DEFINED SETTINGS` section of the `main.tex` file, you can customize the following variables to suit your needs:
 
-The main file brings your project together. It includes all the necessary packages, macros, and settings to format the document as per the requirements. The main file also includes the auxiliary files for the title page, front matter, technical chapters, and back matter. The primary imports are defined in later sections, but the cursor overview of main is given below:
+| Setting | Example              | Description |
+---
+| Author | John Doe              | author name |
+| Degree | doctoral              | doctoral or masters |
+| Month | Month                  | month of submission |
+| Year | YEAR                    | year of submission |
+| Title | \LaTeX\ Dissertation Template for Johns Hopkins University | title of the thesis |
+| FigurePath | figures           | subdirectory for the figure files |
+| BibFileName | thesis.bib       | name of the bib file |
+| SecondaryBibFileName | bibtex.bib|       | name for under chapter files |
+
+
+Additionally, the main file brings your project together. It includes all the necessary packages, macros, and settings to format the document as per the requirements. The main file also includes the auxiliary files for the title page, front matter, technical chapters, and back matter. The primary imports are defined in later sections, but the cursor overview of main is given below:
 
 ```mermaid
 graph TB
@@ -309,6 +335,13 @@ Add your math macros to the `MATH MACROS` section. Some examples of simple math 
 
 #### Title page
 
+The title page should be automatically generated from the user defined settings in `main.tex`
+
+<details>
+<summary>
+Details on [`lib/title.tex`](lib/title.tex)
+</summary>
+
 The thesis title page is defined using the `titlepage` environment which is centered and single-spaced with no header and footer. To format the title page of the thesis as per the requirement, the following macros are defined:
 - `\ThesisTitle:` prints out the **thesis title** approximately 1.5 inches below the top of the page.
 - `\ThesisAuthor{}:` prints out the "by author-name" in two single-spaced lines. The author's name is the input argument to the macro.
@@ -316,9 +349,17 @@ The thesis title page is defined using the `titlepage` environment which is cent
 - `\Location:` prints out the location (Baltimore, Maryland).
 - `\ThesisDate{ }{ }:` prints the thesis submission month and year; these are the two arguments to the macro.
 - `\ThesisCopyright{ }{ }:` prints the optional copyright statement 2 inches from the bottom of the page. The first and second arguments to this macro are Year and Author name.
+</details>
 
 
 #### Frontmatter
+
+The title page should be automatically generated from the user defined settings in `main.tex`
+
+<details>
+<summary>
+Details on [`lib/frontmatter.tex`](lib/frontmatter.tex)
+</summary>
 
 Prefaces and TOC, LOT, LOF, etc.
 
@@ -335,10 +376,17 @@ Prefaces and TOC, LOT, LOF, etc.
   - `\mylistoffigures:` to print the list of figures.
 
 - Currently, the template does not have any specific settings or package options to print the List of Algorithms, the List of Abbreviations, the List of Symbols, the List of Supplementary Materials, etc. However, you can look into `glossaries`, `glossaries-extra`, and `tocloft` packages to define custom lists to be printed. This might take a little bit of time to do. Fair warning, this may take some amount of work!
-
+</details>
 
 
 ### Chapter texts
+
+Example chapter texts are included in the `chapters` subdirectory. To reference your own chapters, modify `main.tex` to contain the relevant `\Chapter{}` command.
+
+<details>
+<summary>
+On details for how to format chapters and their contents, read here.
+</summary>
 
 - It is a good practice not to use math expressions for chapter, section, subsection, and subsection titles. But if you have to do it, you may encounter warnings given by the hyperref package. To resolve this, you can use the following command:
     ``` latex
@@ -407,11 +455,12 @@ Prefaces and TOC, LOT, LOF, etc.
   \makeatother
   \renewcommand{\thechapter}{\Alph{chapter}}
   ```
-
+</details>
 
 ### Figures, Tables, and Algorithms
 
 - Add all the figures in the `figures` subdirectory. If your subdirectory name is different, then change the `FigurePath` variable. You can add chapter-wise PDF files or just add all of them as you have them (PDF, PNG, JPG) in that directory.
+  - If you use chapter directories, the `figures` subdirectory will also be used.
   - For large figures, you can consider adding them in landscape mode using the `sidewaysfigure` environment from the `rotating` package
   - Regardless of the file extension and program you use to produce the figure, it is a good practice to ensure the fonts within the images are embedded.
 
@@ -422,7 +471,6 @@ Prefaces and TOC, LOT, LOF, etc.
   - Similar to the figures and tables, you can print the list of algorithms in the front matter of your thesis. However, to have a consistent formatting of this similar to the other listings, you will need to define macros.
 
 - You can add codes using the `listings` and `minted` packages (both of them are loaded in the preamble). Customize these packages to your needs/preferences.
-
 
 
 ### Bibliography

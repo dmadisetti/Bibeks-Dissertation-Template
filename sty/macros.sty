@@ -59,7 +59,7 @@
 %%%% CHAPTER COMMAND allow for various chapter locations
 \newcommand{\Chapter}[1]{%
   \IfFileExists{#1.tex}{%
-    \IfFileExists{#1/bibtex.bib}{%
+    \IfFileExists{#1/\SecondaryBibFileName}{%
       \begin{refsection}%
       \include{#1}%
       \end{refsection}%
@@ -68,7 +68,7 @@
     }%
   }{%
     \IfFileExists{#1/main.tex}{%
-      \IfFileExists{#1/bibtex.bib}{%
+      \IfFileExists{#1/\SecondaryBibFileName}{%
         \begin{refsection}%
         \include{#1/main}%
         \end{refsection}%

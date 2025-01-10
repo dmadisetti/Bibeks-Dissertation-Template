@@ -17,6 +17,7 @@
 *.vrb
 *.run.xml
 *.bcf
+*.xmpi
 
 # Temporary files
 *~

@@ -33,6 +33,21 @@
 %%%% REPORT CLASS with 12 pt font and onesided printing (book class also works)
 \documentclass[12pt,letterpaper]{report}
 
+%%%%%%%%%%%%%%%%%%%%%%%% USER-DEFINED SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\Author{John Doe}              % author name
+\def\Degree{doctoral}              % doctoral or masters
+\def\Month{Month}                  % month of submission
+\def\Year{YEAR}                    % year of submission
+
+\def\Title{\LaTeX\ Dissertation Template for Johns Hopkins University}
+
+%% File paths
+\def\FigurePath{figures}           % subdirectory for the figure files
+\def\BibFileName{thesis.bib}       % name of the bib file
+\def\SecondaryBibFileName{bibtex.bib}       % name for under chapter files
+%%%%%%%%%%%%%%%%%%%%%%%%% SETTINGS END HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% INCLUDE BEGINS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{sty/typesetting}
 %%% You are encouraged to go through the packages manually to enable
