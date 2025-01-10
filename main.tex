@@ -33,6 +33,7 @@
 %%%% REPORT CLASS with 12 pt font and onesided printing (book class also works)
 \documentclass[12pt,letterpaper]{report}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INCLUDE BEGINS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{sty/typesetting}
 %%% You are encouraged to go through the packages manually to enable
 % and disable what you need. What is provided are common packages,
@@ -41,52 +42,50 @@
 %%% Accordingly tweak package settings. If you disabled any packages,
 % be sure to cross reference with this import.
 \usepackage{sty/opts}
+%%% Title page formatting
 \usepackage{sty/title}
+%%% Document Formatting
 \usepackage{sty/document}
 %%% Some common, useful macros. You may wish to defined your own, or
 % disable these for a more pure tex experience.
 \usepackage{sty/macros}
 %%% define custom settings for other packages here (algorithm/ listing, etc.)
 \usepackage{sty/math}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INCLUDE ENDS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT BEGINS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT BEGINS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-%%%% TITLE PAGE
-\input{src/title}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% includes title, abstract, [dedication, acknowledgement, epigraph] (optional)
+\input{lib/frontmatter}
+%%%%%%%%%%%%%%%%%%%%%%%%% END FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%% FRONT MATTER
-% includes abstract, dedication, acknowledgement,epigraph
-\input{src/frontmatter}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%% PAGE and TEXT settings
-\MainTextSpacing                        % restores double spacing
-\pagenumbering{arabic}                  % Arabic page numbering
-\fancyhead[L]{\chaptername\ \thechapter. \nouppercase \leftmark}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% include all the main text chapters
 % Note! You can include a directory (like chapter 3) or a file directly.
+% You also don't have to nest under the chapters directory, but that's just how
+% things are cleaned up here.
 \Chapter{chapters/01-chapter}
 \Chapter{chapters/02-chapter}
 \Chapter{chapters/03-chapter}
 \Chapter{chapters/04-chapter}
 \Chapter{chapters/05-chapter}
-
 %% add more main text technical chapters if you have
+%%%%%%%%%%%%%%%%%%%%%%%%% END MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% END MAIN MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%% BACK MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Includes bib endings.
+\input{lib/backmatter}
+%%%%%%%%%%%%%%%%%%%%%%%%% END BACK MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%% BACK MATTER
-\input{src/backmatter}
-% Includes bib and appendices. Within this template:
-%    - appendix-A.tex
-%    - appendix-B.tex
-
+%%% Appendices
+\include{appendices/appendix-A}
+\include{appendices/appendix-B}
+%% add more appendix chapters if you have
 
 \end{document}
-
-%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT ENDS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT ENDS HERE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

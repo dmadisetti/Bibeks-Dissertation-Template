@@ -84,4 +84,12 @@
   }%
 }
 
+%%%% OPTIONAL PREFACE additions:
+\newcommand{\OptionalPreface}[1]{%
+  \IfFileExists{preface/#1.tex}{%
+      \include{preface/#1}%
+    }{}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% END OTHER MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -4,56 +4,6 @@ This is an unofficial thesis (masters) or dissertation (PhD) template for Johns 
 
 As of March 2024, the template follows the thesis or dissertation formatting requirements provided by the [Johns Hopkins University Sheridan Library](https://www.library.jhu.edu/library-services/electronic-theses-dissertations/formatting-requirements/). Johns Hopkins Library is flexible in terms of the format except for the title page, margins, and overall double-spaced content. **However, be sure to check the requirements before you proceed any further. It is the user's responsibility to ensure all the formatting requirements are met.**
 
-```mermaid
-graph TB
-    subgraph B[Includes]
-        a[sty/typesetting]
-        b[sty/packages]
-        c[sty/opts]
-        d[sty/title]
-        e[sty/document]
-        f[sty/macros]
-        g[sty/math]
-    end
-
-    subgraph E[Chapters]
-        M[chapters/01-chapter.tex]
-        N[chapters/02-chapter.tex]
-        O[chapters/03-chapter/main.tex]
-        P[chapters/04-chapter.tex]
-        Q[chapters/05-chapter.tex]
-    end
-
-    subgraph F[src/backmatter.tex]
-        direction TB
-        Bibtex
-        subgraph Appendices
-            S[appendices/appendix-A.tex]
-            T[appendices/appendix-B.tex]
-        end
-        Bibtex ~~~ Appendices
-    end
-
-    subgraph D[src/frontmatter.tex]
-        src/abstract
-        src/dedication
-        src/acknowledgement
-        src/epigraph
-    end
-
-    subgraph C[Title]
-        x(( )):::invis
-    end
-
-    A[main.tex] -.-> B
-    A --> C
-    A --> D
-    A --> E
-    A --> F
-    style x fill:none,stroke:none,color:transparent,stroke-width:0px 
-    style C fill:none,stroke:none,stroke-width:0px 
-```
-
 ## Table of Contents
 
 * [Version history for the template](#version-history-for-the-template)
@@ -104,8 +54,8 @@ Since the template is based on the report class, it is subdivided into multiple 
 
 | File name | Description |
 | --------- | ----------- |
-| `00-main.tex` | is the driver or root file which includes all the preamble, document settings, package settings, and macros as needed as well as the auxiliary .tex files for each chapter. I would recommend going through the different sections of this file before you start working to understand the available packages and options. |
-| `<filename>.tex` | are the `.tex` files dedicated to individual pages (e.g., title, dedication) or environments (such as abstract, bibliography, etc.) or technical chapters. These files are called from the `00-main.tex` file using an `\include{}` command which flushes all the floating objects and starts a new page. |
+| `main.tex` | is the driver or root file which includes all the preamble, document settings, package settings, and macros as needed as well as the auxiliary .tex files for each chapter. I would recommend going through the different sections of this file before you start working to understand the available packages and options. |
+| `preface/<filename>.tex` | are the `.tex` files dedicated to individual pages (e.g., title, dedication) or environments (such as abstract, bibliography, etc.) or technical chapters. These files are called from the `main.tex` file using an `\include{}` command which flushes all the floating objects and starts a new page. |
 | `figures` | is the subdirectory containing all the figures for the thesis. You can add the figures as chapter-wise PDF files or as just individual images with allowable extensions. Images are called using the `\includegraphics{}` command in a figure environment. |
 | `thesis.bib` | is a biblatex-compatible file that contains all the bibliographic items. Use Zotero, Mendeley, EndNote, or some other citation manager to generate this file. |
 | `latexmkrc` | contains additional settings for the make file to generate PDF/A output. This is required to be in the main directory of the Overleaf project. Do not change the file name. |
@@ -113,21 +63,20 @@ Since the template is based on the report class, it is subdivided into multiple 
 | `template.pdf` | is the sample output PDF that you will obtain when you start working on this project. Check this file to ensure you are content with the formatting. |
 | `README.md` | is this file that contains the details related to the template. |
 
-> [!NOTE]
-
+> [!CAUTION]
+>
 > Currently, the chapters are filled with randomly generated text by the `blindtext` package. Remove them to get started with your writing.
 
 
 ## How to use the template on Overleaf
 
-Since Johns Hopkins provides [Overleaf premium](https://www.overleaf.com/learn/how-to/Overleaf_premium_features) to all affiliates, my recommendation is to use Overleaf for this template. Follow one of the two approaches to get started with this project on Overleaf. Then go through the `00-main.tex` file and other files to see how the template is structured.
+Since Johns Hopkins provides [Overleaf premium](https://www.overleaf.com/learn/how-to/Overleaf_premium_features) to all affiliates, my recommendation is to use Overleaf for this template. Follow one of the two approaches to get started with this project on Overleaf. Then go through the `main.tex` file and other files to see how the template is structured.
 
 - You can download/clone this repository from GitHub, and compress it as a zip file. Go to Overleaf, Click on **New Project** -> **Upload Project**, then upload the zipped folder.
 
 - If you have your Overleaf and GitHub account linked and want to have copies of the project in both places, you can **fork** this repository. Then go to Overleaf and click on **New Project** -> **Import from GitHub**, it should list the forked project. Once imported, you can start working on it.
 
-- Once you have imported the project, you need to compile the `00-main.tex` file using the `pdflatex` option (default on Overleaf) which will call all the auxiliary `.tex` files included to produce the final PDF. It should compile without any error on Overleaf. There might be warnings, but you can ignore them.
-
+- Once you have imported the project, you need to compile the `main.tex` file using the `pdflatex` option (default on Overleaf) which will call all the auxiliary `.tex` files included to produce the final PDF. It should compile without any error on Overleaf. There might be warnings, but you can ignore them.
 
 
 > [!TIP]
@@ -135,6 +84,20 @@ Since Johns Hopkins provides [Overleaf premium](https://www.overleaf.com/learn/h
 > Although it is very convenient to write your document on Overleaf, strongly consider backing up your work using Git or GitHub integration or the Dropbox sync feature. If you use Overleaf and GitHub integration, you have to do **Push Overleaf Changes to GitHub** from the Overleaf Menu. It might be easier to backup the files with Dropbox Sync but I have not used it until now. Either of these approaches may save you from losing your document in case of an accident.
 
 
+### What to do after you have the project on Overleaf
+
+The only files from this template you have to modify are:
+ - The `main.tex` file
+ - The `thesis.bib` file
+ - Preface files:
+   - `preface/title.tex`
+   - `preface/abstract.tex`
+ - And the optional preface files:
+   - `preface/acknowledgement.tex`
+   - `preface/dedication.tex`
+   - `preface/epigraph.tex`
+
+You may delete any of the optional preface files if you do not need them (the template will still compile). You can add your chapters, appendices, figures, tables, and algorithms as needed. Feel free to delete the example `chapters` and `appendices` files and folders as you add your own. For an example of how you might lay out your project, see the [Basic user guidelines](#basic-user-guidelines) below. In general, the rest of the files are supporting files and should not be modified.
 
 ## Document formatting (customization beyond the requirements)
 
@@ -194,48 +157,149 @@ Since the default formatting of the LaTeX report class (even with different pack
 ```
 
 
-
 ## Basic user guidelines
 
 ### Before you begin
 
 Overleaf has a huge collection of tutorials and examples on different LaTeX-related typesetting topics (margins and page size, math, table, footnote, and bibliography management). You will most likely find what you need there. Another useful resource for [writing thesis in LaTeX is here](https://www.khirevich.com/latex/). If you would like to do something specific, your best friend is Google; most likely someone on [TeX StackExchange](https://tex.stackexchange.com) has done it before.
 
-
 ### The main file
 
-The preamble section of the `00-main.tex` file has been subdivided into multiple sections to make the code understandable and readable. A simple descriptions of the sections are below:
+The preamble section of the `main.tex` file has been subdivided into multiple sections to make the code understandable and readable. A simple descriptions of the sections are below:
 
-- Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `00-main.tex` file in the `LIST OF VARIABLES FOR FORMATTING` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
+The main file brings your project together. It includes all the necessary packages, macros, and settings to format the document as per the requirements. The main file also includes the auxiliary files for the title page, front matter, technical chapters, and back matter. The primary imports are defined in later sections, but the cursor overview of main is given below:
 
-- The most common and popular packages for writing a thesis or dissertation are added in the `LaTeX PACKAGES` sections. Some packages are loaded with the options specified for formatting purposes. For some other packages, options are specified in the `PACKAGE OPTIONS` section. Before you add a package, please check if it has already been added. Sometimes adding packages in the wrong order may throw a warning or error because of the dependency issue.
+```mermaid
+graph TB
+    subgraph B[Includes]
+        a[sty/typesetting]
+        b[sty/packages]
+        c[sty/opts]
+        d[sty/title]
+        e[sty/document]
+        f[sty/macros]
+        g[sty/math]
+    end
 
-- Based on the declared variables and loaded package options, formatting-related customized settings are available in the `DOCUMENT FORMATTING` section in the `00-main.tex` file.
+    subgraph E[Chapters]
+        M[chapters/01-chapter.tex]
+        N[chapters/02-chapter.tex]
+        O[chapters/03-chapter/main.tex]
+        P[chapters/04-chapter.tex]
+        Q[chapters/05-chapter.tex]
+    end
 
+    subgraph F[Backmatter]
+        direction TB
+        Bibtex
+        subgraph Appendices
+            S[appendices/appendix-A.tex]
+            T[appendices/appendix-B.tex]
+        end
+        Bibtex ~~~ Appendices
+    end
 
-- If you do not like the default font of this template (Latin Modern Roman), you can try a different font or combination of fonts. However, you should be careful about having consistent typesetting, especially between math and text. [Follow this old discussion on StackExchange to learn more about fonts in LaTeX](https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math). But finding a different font that offers consistent text and math typography may require you to add customized commands/ macros and options.
+    subgraph D[Frontmatter]
+        preface/abstract
+        preface/dedication
+        preface/acknowledgement
+        preface/epigraph
+    end
+
+    subgraph C[Title]
+        x(( )):::invis
+    end
+
+    A[main.tex] -.-> B
+    A -- src/title.tex --> C
+    A -- src/frontmatter.tex --> D
+    A --> E
+    A -- src/backmatter.tex --> F
+
+    %% Title must be a subgraph to apprear in the correct order. Play around
+    %% with stylings to be consistent.
+    style x fill:none,stroke:none,color:transparent,stroke-width:0px
+    style C fill:none,stroke:none,stroke-width:0px
+
+    style E fill:#ADD8E6,opacity:0.5
+```
+
+Note that main, includes the relevant stylings, packages, and macros you will likely need. Moreover, it imports the title, frontmatter, backmatter, and relevant chapters.
+Chapters must be explicitly listed in `main.tex` but can be either files, directories- and can be placed anywhere.
+To include a chapter, invoke the `\Chapter` include. For example given a file structure like:
+
+```plaintext
+thesis/
+    main.tex
+    ...
+    introduction.tex
+    conclusion.tex
+    figures/
+        general.pdf
+    projects/
+        simulation_chapter.tex
+        statistics_chapter/
+            figures/
+                graph.pdf
+            main.tex
+```
+
+Your `main.tex` file might look like:
+
+```latex
+%% ...
+\Chapter{introduction}
+\Chapter{projects/simulation_chapter}
+\Chapter{projects/statistics_chapter}
+\Chapter{conclusion}
+%% ...
+```
+
+### Predefined Includes
+
+#### Typesetting ([`sty/typesetting.sty`](blob/main/sty/typesetting.sty))
+
+Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `main.tex` file in the `LIST OF VARIABLES FOR FORMATTING` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
+
+##### Fonts
+
+If you do not like the default font of this template (Latin Modern Roman), you can try a different font or combination of fonts. However, you should be careful about having consistent typesetting, especially between math and text. [Follow this old discussion on StackExchange to learn more about fonts in LaTeX](https://tex.stackexchange.com/questions/59702/suggest-a-nice-font-family-for-my-basic-latex-template-text-and-math). But finding a different font that offers consistent text and math typography may require you to add customized commands/ macros and options.
   - This TUG page lists [fonts that provide math support](https://tug.org/FontCatalogue/mathfonts.html). But Overleaf may not have all of the packages listed there, and some of the packages may raise conflict with other packages that are already loaded. You can try and figure out which works best for you.
   - The font package has been loaded using the `\usepackage{\FontPackage}` command in the `DOCUMENT FORMATTING` section of the preamble. Depending on the Font you choose, you may have to add additional options/ packages (follow the above webpage) and simply changing the `\FontPackage` variable may not work.
 
+#### Packages ([`sty/packages.sty`](blob/main/sty/packages.sty))
 
-- Macros related to the title page items are defined in the `TITLE PAGE MACROS` section and the details are given below.
+The most common and popular packages for writing a thesis or dissertation are added in the `LaTeX PACKAGES` sections. Some packages are loaded with the options specified for formatting purposes. Before you add a package, please check if it has already been added. Sometimes adding packages in the wrong order may throw a warning or error because of the dependency issue.
 
-- Some essential macros related to different redefined environments are available in `OTHER MACROS` in the preamble (will be discussed below).
+#### Options ([`sty/opts.sty`](blob/main/sty/opts.sty))
 
-- Add your math macros to the `MATH MACROS` section. Some examples of simple math macros are added there in the template. You can add more.
+For some packages, options are specified in the `PACKAGE OPTIONS` section.
 
+#### Title ([`sty/title.sty`](blob/main/sty/title.sty))
 
-- Inside the `\begin{document} ... \end{document}` environment, the title page, and other front matters (abstract, dedication, etc.), technical chapters, bibliography chapter, and appendix chapters are added using the `\include{ }` statement. There is no separate chapter for TOC, LOT, LOF, etc., and additionally, headers are customized based on the type of chapter (numbered vs. unnumbered).
+Macros related to the title page items are defined in the `TITLE PAGE MACROS` section and the details are given [below](#title-page).
+
+#### Document ([`sty/document.sty`](blob/main/sty/document.sty))
+
+Macros for in inside the `\begin{document} ... \end{document}` environment, the title page, and other front matters (abstract, dedication, etc.), technical chapters, bibliography chapter, and appendix chapters are added using the `\include{ }` statement. There is no separate chapter for TOC, LOT, LOF, etc., and additionally, headers are customized based on the type of chapter (numbered vs. unnumbered).
+
+#### Macros ([`sty/macros.sty`](blob/main/sty/macros.sty))
+
+Some essential macros related to different redefined environments are available in `OTHER MACROS` in the preamble (will be discussed below).
+
+#### Math ([`sty/math.sty`](blob/main/sty/math.sty))
+
+Add your math macros to the `MATH MACROS` section. Some examples of simple math macros are added there in the template. You can add more.
+
 
 > [!TIP]
 >
 > If you find all the packages and their settings and macros to be overwhelming and distracting during writing and editing, you can cut and paste all these contents to a separate `my-preamble.tex` file (name it as you like) in the project directory. Then you can use the command `\input{my-preamble.tex}` to make your main file appear cleaner and less distracting. See [managing a large project on Overleaf](https://www.overleaf.com/learn/latex/Management_in_a_large_project).
 
 
+### Preface
 
-
-
-### Title page
+#### Title page
 
 The thesis title page is defined using the `titlepage` environment which is centered and single-spaced with no header and footer. To format the title page of the thesis as per the requirement, the following macros are defined:
 - `\ThesisTitle:` prints out the **thesis title** approximately 1.5 inches below the top of the page.
@@ -246,10 +310,9 @@ The thesis title page is defined using the `titlepage` environment which is cent
 - `\ThesisCopyright{ }{ }:` prints the optional copyright statement 2 inches from the bottom of the page. The first and second arguments to this macro are Year and Author name.
 
 
+#### Frontmatter
 
-
-
-### Prefaces and TOC, LOT, LOF, etc.
+Prefaces and TOC, LOT, LOF, etc.
 
 - Except for the Abstract, other contents in the front matter can be arbitrarily spaced. In this template, the Acknowledgment and Dedication pages are also double-spaced. However, a local `spacing` environment can be used for specialized preface pages to include a dedication page or quote, etc. See the epigraph page for the example.
 
@@ -264,8 +327,6 @@ The thesis title page is defined using the `titlepage` environment which is cent
   - `\mylistoffigures:` to print the list of figures.
 
 - Currently, the template does not have any specific settings or package options to print the List of Algorithms, the List of Abbreviations, the List of Symbols, the List of Supplementary Materials, etc. However, you can look into `glossaries`, `glossaries-extra`, and `tocloft` packages to define custom lists to be printed. This might take a little bit of time to do. Fair warning, this may take some amount of work!
-
-
 
 
 
@@ -316,7 +377,7 @@ The thesis title page is defined using the `titlepage` environment which is cent
     ``` latex
     \chapter[short-chapter-name]{long-chapter-title}
     ```
-  - If customizing the header becomes too difficult, you can also consider removing all the header options by commenting them out in the document section of the `00-main.tex` file. In that case, remove the `includehead`, `headheight`, and `headsep` options from the `\geometry{ ... }` command in the `PACKAGE OPTION` section.
+  - If customizing the header becomes too difficult, you can also consider removing all the header options by commenting them out in the document section of the `main.tex` file. In that case, remove the `includehead`, `headheight`, and `headsep` options from the `\geometry{ ... }` command in the `PACKAGE OPTION` section.
   -If you make changes in `\HeaderHeight`, then you may have to change the `ADHOC HEIGHT ADJUSTMENT VARIABLES` to obtain consistent formatting (although inconsistency is hard to notice with bare eyes), use the `\fgruler` package as shown above.
 
 - To list items, use `enumerate` and `itemize` environments. But make sure to customize the spacing to have consistent typography with the double-spaced text document.

@@ -1,3 +1,6 @@
+%%%% TITLE PAGE
+\input{preface/title}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%% text spacing, page numbering, and header settings
@@ -10,12 +13,12 @@
 \fancyhead[L]{\nouppercase \leftmark}       % prints header for unnumbered chap
 
 %%%% MUST ADD ABSTRACT (includes committee as well)
-\include{src/abstract}
+\include{preface/abstract}
 
 %%%% OPTIONAL but COMMON: preface chapters
-\include{src/dedication}
-\include{src/acknowledgement}
-\include{src/epigraph}
+\OptionalPreface{dedication}
+\OptionalPreface{acknowledgement}
+\OptionalPreface{epigraph}
 %% you can have other chapters and the order does not matter
 
 %%%% LISTINGS
@@ -37,3 +40,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% END FRONT MATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%% Settings restore for body text
+
+%%%% PAGE and TEXT settings
+\MainTextSpacing                        % restores double spacing
+\pagenumbering{arabic}                  % Arabic page numbering
+\fancyhead[L]{\chaptername\ \thechapter. \nouppercase \leftmark}
