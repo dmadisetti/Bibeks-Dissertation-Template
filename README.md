@@ -113,7 +113,7 @@ Since the default formatting of the LaTeX report class (even with different pack
 
 <details>
 <summary>
-Document formatting defintiions are found in the [`sty/typesetting.sty`](sty/typesetting.sty) file, with some of the design descisions listed here.
+Document formatting definitions are found in the <a href=sty/typesetting.sty>sty/typesetting.sty</a> file, with some of the design descisions listed here.
 </summary>
 
 - The document was typeset using Latin Modern Roman font (loaded using the `lmodern` package) for document typeset as it offers consistent typesetting between the text and math environments.
@@ -182,12 +182,12 @@ Overleaf has a huge collection of tutorials and examples on different LaTeX-rela
 Important, in the `USER-DEFINED SETTINGS` section of the `main.tex` file, you can customize the following variables to suit your needs:
 
 | Setting | Example              | Description |
----
+| --------- | ----------- | ----------- |
 | Author | John Doe              | author name |
 | Degree | doctoral              | doctoral or masters |
 | Month | Month                  | month of submission |
 | Year | YEAR                    | year of submission |
-| Title | \LaTeX\ Dissertation Template for Johns Hopkins University | title of the thesis |
+| Title | $\LaTeX$ Dissertation Template for Johns Hopkins University | title of the thesis |
 | FigurePath | figures           | subdirectory for the figure files |
 | BibFileName | thesis.bib       | name of the bib file |
 | SecondaryBibFileName | bibtex.bib|       | name for under chapter files |
@@ -297,7 +297,7 @@ The files included in main should generally not be modified, but are listed here
 
 #### Typesetting ([`sty/typesetting.sty`](sty/typesetting.sty))
 
-Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `main.tex` file in the `LIST OF VARIABLES FOR FORMATTING` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
+Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `main.tex` file in the `USER-DEFINED VARIABLES` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
 
 ##### Fonts
 
@@ -339,7 +339,7 @@ The title page should be automatically generated from the user defined settings 
 
 <details>
 <summary>
-Details on [`lib/title.tex`](lib/title.tex)
+Details on <a href=lib/title.tex>lib/title.tex</a>
 </summary>
 
 The thesis title page is defined using the `titlepage` environment which is centered and single-spaced with no header and footer. To format the title page of the thesis as per the requirement, the following macros are defined:
@@ -354,14 +354,14 @@ The thesis title page is defined using the `titlepage` environment which is cent
 
 #### Frontmatter
 
-The title page should be automatically generated from the user defined settings in `main.tex`
+Frontmatter should be automatically generated from the project.
 
 <details>
 <summary>
-Details on [`lib/frontmatter.tex`](lib/frontmatter.tex)
+Details on <a href=lib/frontmatter.tex>lib/frontmatter.tex</a>
 </summary>
 
-Prefaces and TOC, LOT, LOF, etc.
+Contains prefaces and TOC, LOT, LOF, etc.
 
 - Except for the Abstract, other contents in the front matter can be arbitrarily spaced. In this template, the Acknowledgment and Dedication pages are also double-spaced. However, a local `spacing` environment can be used for specialized preface pages to include a dedication page or quote, etc. See the epigraph page for the example.
 
@@ -459,10 +459,15 @@ On details for how to format chapters and their contents, read here.
 
 ### Figures, Tables, and Algorithms
 
-- Add all the figures in the `figures` subdirectory. If your subdirectory name is different, then change the `FigurePath` variable. You can add chapter-wise PDF files or just add all of them as you have them (PDF, PNG, JPG) in that directory.
+Add all the figures in the `figures` subdirectory. If your subdirectory name is different, then change the `FigurePath` variable. You can add chapter-wise PDF files or just add all of them as you have them (PDF, PNG, JPG) in that directory.
   - If you use chapter directories, the `figures` subdirectory will also be used.
   - For large figures, you can consider adding them in landscape mode using the `sidewaysfigure` environment from the `rotating` package
   - Regardless of the file extension and program you use to produce the figure, it is a good practice to ensure the fonts within the images are embedded.
+
+<details>
+<summary>
+Other tricks and tips for figures, tables, and algorithms can be found here.
+</summary>
 
 - If you would like to customize the spacing inside a table globally throughout the document, you can change the variable `\GlobalTableSpacing`. However, I suggest doing it locally by defining a group for each table (StackExhange or StackOverflow is your friend here) where you can redefine `\arraystretch` for the individual tables as needed.
   - For wide tables, you can use the `sidewaystable` environment from the `rotating` package which will print our table in landscape mode. However, the pagination should always appear at the bottom center of the page, make sure not to change it.
@@ -471,6 +476,7 @@ On details for how to format chapters and their contents, read here.
   - Similar to the figures and tables, you can print the list of algorithms in the front matter of your thesis. However, to have a consistent formatting of this similar to the other listings, you will need to define macros.
 
 - You can add codes using the `listings` and `minted` packages (both of them are loaded in the preamble). Customize these packages to your needs/preferences.
+</details>
 
 
 ### Bibliography
@@ -483,7 +489,7 @@ The bibliography in this template is managed by the BibLaTeX package instead of 
 >  Since the `.bib` file for `biblatex` is a little different than the one for `bibtex`. Use a citation manager to generate a `biblatex` compatible file directly. I use Zotero with the `Better BibTeX` plugin and export my `.bib` with the biblatex compatible format. **Please make sure to go through the generated `.bib` file to find inconsistency and formatting issues with the bib entries and fields.**
 
 
-- The name of your bib file has to be specified in the `BibFileName` variable in the `LIST OF VARIABLES FOR FORMATTING` section. If your bib file has a different name than the given file, then change the variable name or the file name.
+- The name of your bib file has to be specified in the `BibFileName` variable in the `USER-DEFINED VARIABLES` section. If your bib file has a different name than the given file, then change the variable name or the file name.
 
 - To change the default form of the bibliography (currently, `Nature` style), look for the following command and change the options based on your need and/or preference. Depending on the discipline, you may need to use different citation formats such as IEEE, ACM, APA, ACS, AIP/ APS, AMS, MLA, etc. As an example, APA and IEEE styles are also shown in the template as well (commented). Customization can be done by changing the options within `[ ... ]` of the following command.
     ``` latex
