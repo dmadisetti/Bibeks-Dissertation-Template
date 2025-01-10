@@ -257,7 +257,19 @@ Your `main.tex` file might look like:
 
 ### Predefined Includes
 
-#### Typesetting ([`sty/typesetting.sty`](blob/main/sty/typesetting.sty))
+You may want to tweak the default package definition list, or create some of your own macros. Package definitions are found in [`sty/packages.sty`](sty/packages.sty), with options in [`sty/opts.sty`](sty/opts.sty). Macros are defined in [`sty/macros.sty`](sty/macros.sty), and math macros in [`sty/math.sty`](sty/math.sty).
+
+> [!TIP]
+>
+> If you find all the packages and their settings and macros to be overwhelming and distracting during writing and editing, you can cut and paste all these contents to a separate `sty/my-preamble` file (name it as you like) in the sty directory. Then you can use the command `\input{sty/my-preamble}` to make your main file appear cleaner and less distracting. See [managing a large project on Overleaf](https://www.overleaf.com/learn/latex/Management_in_a_large_project).
+
+
+<details>
+<summary>
+The files included in main should generally not be modified, but are listed here for completion.
+</summary>
+
+#### Typesetting ([`sty/typesetting.sty`](sty/typesetting.sty))
 
 Most of the necessary variables to customize the format and the style of the document are included at the beginning of the `main.tex` file in the `LIST OF VARIABLES FOR FORMATTING` section. You can customize different spacing and font style options using these variables. For most cases, tweaking these variables to your needs and preferences will be enough to get the desired formatting. However, some of these variables have values that may appear arbitrary to the user. Those are found by *trial and error* to have a consistent formatting (described above) overriding default formatting offered by the LaTeX report class and added packages.
 
@@ -267,35 +279,31 @@ If you do not like the default font of this template (Latin Modern Roman), you c
   - This TUG page lists [fonts that provide math support](https://tug.org/FontCatalogue/mathfonts.html). But Overleaf may not have all of the packages listed there, and some of the packages may raise conflict with other packages that are already loaded. You can try and figure out which works best for you.
   - The font package has been loaded using the `\usepackage{\FontPackage}` command in the `DOCUMENT FORMATTING` section of the preamble. Depending on the Font you choose, you may have to add additional options/ packages (follow the above webpage) and simply changing the `\FontPackage` variable may not work.
 
-#### Packages ([`sty/packages.sty`](blob/main/sty/packages.sty))
+#### Packages ([`sty/packages.sty`](sty/packages.sty))
 
 The most common and popular packages for writing a thesis or dissertation are added in the `LaTeX PACKAGES` sections. Some packages are loaded with the options specified for formatting purposes. Before you add a package, please check if it has already been added. Sometimes adding packages in the wrong order may throw a warning or error because of the dependency issue.
 
-#### Options ([`sty/opts.sty`](blob/main/sty/opts.sty))
+#### Options ([`sty/opts.sty`](sty/opts.sty))
 
 For some packages, options are specified in the `PACKAGE OPTIONS` section.
 
-#### Title ([`sty/title.sty`](blob/main/sty/title.sty))
+#### Title ([`sty/title.sty`](sty/title.sty))
 
 Macros related to the title page items are defined in the `TITLE PAGE MACROS` section and the details are given [below](#title-page).
 
-#### Document ([`sty/document.sty`](blob/main/sty/document.sty))
+#### Document ([`sty/document.sty`](sty/document.sty))
 
 Macros for in inside the `\begin{document} ... \end{document}` environment, the title page, and other front matters (abstract, dedication, etc.), technical chapters, bibliography chapter, and appendix chapters are added using the `\include{ }` statement. There is no separate chapter for TOC, LOT, LOF, etc., and additionally, headers are customized based on the type of chapter (numbered vs. unnumbered).
 
-#### Macros ([`sty/macros.sty`](blob/main/sty/macros.sty))
+#### Macros ([`sty/macros.sty`](sty/macros.sty))
 
 Some essential macros related to different redefined environments are available in `OTHER MACROS` in the preamble (will be discussed below).
 
-#### Math ([`sty/math.sty`](blob/main/sty/math.sty))
+#### Math ([`sty/math.sty`](sty/math.sty))
 
 Add your math macros to the `MATH MACROS` section. Some examples of simple math macros are added there in the template. You can add more.
 
-
-> [!TIP]
->
-> If you find all the packages and their settings and macros to be overwhelming and distracting during writing and editing, you can cut and paste all these contents to a separate `my-preamble.tex` file (name it as you like) in the project directory. Then you can use the command `\input{my-preamble.tex}` to make your main file appear cleaner and less distracting. See [managing a large project on Overleaf](https://www.overleaf.com/learn/latex/Management_in_a_large_project).
-
+</details>
 
 ### Preface
 
